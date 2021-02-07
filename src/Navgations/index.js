@@ -3,12 +3,12 @@ import React, { Component, useContext, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack'
 import { View, Text, ActivityIndicator } from "react-native"
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Loader } from "../Components/index"
-import {Home} from "../Containers"
+import {Home} from "../Containers";
+import { Ionicons, Entypo, AntDesign, FontAwesome } from '@expo/vector-icons';
 
-
-
-const Stack = createStackNavigator()
+const Tab = createBottomTabNavigator();
 
 // function AuthStack() {
 //     return <Stack.Navigator initialRouteName='LogIn'>
@@ -53,16 +53,58 @@ const Stack = createStackNavigator()
 // }
 
 function AppStack() {
-    return <Stack.Navigator>
-        <Stack.Screen
+    return <Tab.Navigator>
+        <Tab.Screen
             name="Home"
             component={Home}
             options={{
-              headerShown:false
-            }}
+                tabBarLabel: 'Home',
+                tabBarIcon: ({ color, size }) => (
+                    <Ionicons name="md-home" size={size} color='black' />
+                ),
+              }}
         />
-
-    </Stack.Navigator>
+         <Tab.Screen
+            name="series"
+            component={Home}
+            options={{
+                tabBarLabel: 'Series',
+                tabBarIcon: ({ color, size }) => (
+                    <FontAwesome name="trophy" size={24} color="black" />
+                ),
+              }}
+        /> 
+           <Tab.Screen
+            name="fantasy"
+            component={Home}
+            options={{
+                tabBarLabel: 'Fantasy',
+                tabBarIcon: ({ color, size }) => (
+                <AntDesign name="earth" size={24} color="black" />
+                ),
+              }}
+        /> 
+          <Tab.Screen
+            name="news"
+            component={Home}
+            options={{
+                tabBarLabel: 'News',
+                tabBarIcon: ({ color, size }) => (
+                    <Entypo name="news" size={size} color="black" />
+                ),
+              }}
+        /> 
+             <Tab.Screen
+            name="more"
+            component={Home}
+            options={{
+                tabBarLabel: 'More',
+                tabBarIcon: ({ color, size }) => (
+                    <AntDesign name="appstore-o" size={size} color="black" />
+                ),
+              }}
+        /> 
+    </Tab.Navigator>
 }
 
 const Router = () => {
